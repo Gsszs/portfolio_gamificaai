@@ -15,6 +15,8 @@ export class welcomeScene extends Scene {
     onInitialize(engine: Engine<any>): void {
         this.backgroundColor = Color.Black
 
+
+
         let fraseBemVindo = new Label ({
             text: "Bem vindo ao portfólio",
             width: 400,
@@ -32,10 +34,10 @@ export class welcomeScene extends Scene {
 
         let actorLogo = new Actor({
             pos: vec(engine.drawWidth  / 2, 430),
-            })
+        })
 
         let imagemLogo = Resources .Logo.toSprite()
-        
+
         imagemLogo.scale = vec(0.4, 0.4)
 
         actorLogo.graphics.add(imagemLogo)
