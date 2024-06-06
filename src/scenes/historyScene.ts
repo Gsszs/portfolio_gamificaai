@@ -1,9 +1,20 @@
-import { Actor, Color, Engine, FadeInOut, Keys, Scene, Transition, vec } from "excalibur";
+import { Actor, Color, Engine, FadeInOut, Keys, Scene, SceneActivationContext, Transition, vec } from "excalibur";
 import { Resources } from "../resources";
 
 export class historyScene extends Scene{
 
     elementoTexto?: HTMLElement
+
+    fadeOutElement(element: HTMLElement) {
+        let opacidade = parseFloat(element.style.opacity);
+        setInterval(() => {
+            if (opacidade > 0) {
+                opacidade -= 0.01
+    
+                element.style.opacity = opacidade.toString()
+            }
+        }, 10)
+    }
 
     onTransition(direction: "in" | "out"): Transition | undefined {
         return new FadeInOut({
@@ -50,7 +61,11 @@ export class historyScene extends Scene{
                 engine.goToScene("gamification", {
                     sourceOut: new FadeInOut ({duration: 1000})
                 })
+                this.fadeOutElement(this.elementoTexto!)
             }
         })
+    }
+    onDeactivate(_context: SceneActivationContext<undefined>): void {
+        this.elementoTexto?.remove()
     }
 }
