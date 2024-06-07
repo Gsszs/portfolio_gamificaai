@@ -9,7 +9,7 @@ export class historyScene extends Scene{
         let opacidade = parseFloat(element.style.opacity);
         setInterval(() => {
             if (opacidade > 0) {
-                opacidade -= 0.01
+                opacidade -= 0.02
     
                 element.style.opacity = opacidade.toString()
             }

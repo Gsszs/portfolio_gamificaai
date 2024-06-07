@@ -1,7 +1,15 @@
-import { Engine, Scene } from "excalibur";
+import { Color, Engine, FadeInOut, Scene, Transition } from "excalibur";
 
 export class expoScene extends Scene {
-    onInitialize(engine: Engine<any>): void {
+    onTransition(direction: "in" | "out"): Transition | undefined {
+        return new FadeInOut({
+            direction: direction,
+            color: Color.Black,
+            duration: 500
+        })
+    }
+
+    onInitialize(_engine: Engine<any>): void {
         
     }
 }
