@@ -13,6 +13,9 @@ import tsxEstoquePath from "./maps/tileset_estoque.tsx?url";
 import tsxBibliotecaPath from "./maps/tileset_biblioteca.tsx?url";
 
 import playerSpritePath from "./sprites/player.png";
+// import npc_aSpritePath from "./sprites/npc_a.png";
+// import npc_bSpritePath from "./sprites/npc_b.png";
+// import npc_cSpritePath from "./sprites/npc_c.png";
 
 import tmxMapaPath from "./maps/showroom_map.tmx?url"
 
@@ -20,6 +23,9 @@ export const Resources = {
   Sword: new ImageSource(sword),
   Logo: new ImageSource(logo),
   PlayerSpriteSheet: new ImageSource(playerSpritePath, { filtering: ImageFiltering.Pixel }),
+  // NpcASpriteSheet: new ImageSource(npc_aSpritePath, { filtering: ImageFiltering.Pixel }),
+  // NpcBSpriteSheet: new ImageSource(npc_bSpritePath, { filtering: ImageFiltering.Pixel }),
+  // NpcCSpriteSheet: new ImageSource(npc_cSpritePath, { filtering: ImageFiltering.Pixel }),
   LogoVertical: new ImageSource(logovertical),
   Gamificacao: new ImageSource(imagemgamificacao),
   Mapa: new TiledResource(tmxMapaPath, {

@@ -13,7 +13,7 @@ export class expoScene extends Scene {
     }
 
     onInitialize(engine: Engine<any>): void {
-        engine.toggleDebug()
+        // engine.toggleDebug()
 
         let tiledMap = Resources.Mapa
 
