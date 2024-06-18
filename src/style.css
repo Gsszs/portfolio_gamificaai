@@ -25,7 +25,11 @@ body {
     right: 5%;
 }
 
-.sobre-gamificacao, .sobre-gamifica {
+.cases {
+    left: 5%;
+}
+
+.sobre-gamificacao, .sobre-gamifica, .cases {
     width: 400px;
     height: 600px;
 
@@ -43,7 +47,7 @@ body {
     top: 10%;
 }
 
-.sobre-gamifica h2, .sobre-gamificacao h2 {
+.sobre-gamifica h2, .sobre-gamificacao h2, .cases h2 {
     margin-bottom: 40px;
 
     font-size: 30px;
@@ -51,9 +55,16 @@ body {
     text-align: center;
 }
 
-.sobre-gamifica p, .sobre-gamificacao p {
+.sobre-gamifica p, .sobre-gamificacao p{
     font-size: 16px;
     text-align: justify;
 
     line-height: 2;
+}
+
+.cases p {
+    font-size: 16px;
+    text-align: justify;
+
+    line-height: 1.9;
 }
