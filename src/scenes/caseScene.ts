@@ -9,6 +9,17 @@ export class caseScene extends Scene {
 
     elementoTexto?: HTMLElement
 
+    fadeOutElement(element: HTMLElement) {
+        let opacidade = parseFloat(element.style.opacity);
+        setInterval(() => {
+            if (opacidade > 0) {
+                opacidade -= 0.03
+    
+                element.style.opacity = opacidade.toString()
+            }
+        }, 10)
+    }
+
     onTransition(direction: "in" | "out"): Transition | undefined {
         return new FadeInOut({
             direction: direction,
@@ -42,7 +53,10 @@ export class caseScene extends Scene {
         this.add(actorCases)
         this.input.keyboard.on("press", (event) => {
             if (event.key == Keys.Enter || event.key == Keys.NumpadEnter) {
-                engine.goToScene("exposicao")
+                engine.goToScene("exposicao", {
+                    sourceOut: new FadeInOut ({duration: 500})
+                })
+                this.fadeOutElement(this.elementoTexto!)
             }
         })
     }

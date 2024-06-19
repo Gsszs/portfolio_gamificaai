@@ -1,4 +1,4 @@
-import { Actor, Animation, Collider, CollisionContact, CollisionType, Color, Engine, Keys, Side, SpriteSheet, Vector, vec } from "excalibur";
+import { Actor, Animation, Collider, CollisionContact, CollisionType, Color, Engine, Keys, Side, SpriteSheet, Vector } from "excalibur";
 import { Resources } from "../resources";
 
 export class Player extends Actor {
@@ -231,7 +231,7 @@ export class Player extends Actor {
         this.ultimoColisor = other
     }
 
-    onPreUpdate(engine: Engine<any>, delta: number): void {
+    onPreUpdate(_engine: Engine<any>, _delta: number): void {
         if (this.ultimoColisor && this.pos.distance(this.ultimoColisor.worldPos) > 40) {
             this.temObjetoProximo = false
 

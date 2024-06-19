@@ -1,7 +1,44 @@
-import { Actor, Animation, CollisionType, Color, Engine, FadeInOut, Scene, SpriteSheet, Transition, vec } from "excalibur";
+import { Actor, Animation, CollisionType, Color, Engine, FadeInOut, ImageSource, Scene, SpriteSheet, Transition, vec } from "excalibur";
 import { Resources } from "../resources";
 import { Player } from "../actors/player";
 import { Npc } from "../actors/npc";
+
+
+function recAnimation(NpcSpriteSend: SpriteSheet) {
+
+    let downIdle = new Animation({
+        frames: [
+            { graphic: NpcSpriteSend.getSprite(18, 1) },
+            { graphic: NpcSpriteSend.getSprite(19, 1) },
+            { graphic: NpcSpriteSend.getSprite(20, 1) },
+            { graphic: NpcSpriteSend.getSprite(21, 1) },
+            { graphic: NpcSpriteSend.getSprite(22, 1) },
+            { graphic: NpcSpriteSend.getSprite(23, 1) },
+        ],
+        frameDuration: 70
+    })
+
+    return downIdle
+}
+
+
+function recConfigs (NpcSpriteSheet: ImageSource) {
+    return SpriteSheet.fromImageSource({
+        image: NpcSpriteSheet,
+        grid: {
+            rows: 20,
+            columns: 56,
+            spriteHeight: 64,
+            spriteWidth: 32,
+        },
+        spacing: {
+            originOffset: {
+                y: 12
+            }
+        }
+
+    })
+}
 
 export class expoScene extends Scene {
     onTransition(direction: "in" | "out"): Transition | undefined {
@@ -12,11 +49,12 @@ export class expoScene extends Scene {
         })
     }
 
-    onInitialize(engine: Engine<any>): void {
+    onInitialize(_engine: Engine<any>): void {
         let musicaFundo = Resources.ClassicBGM
 
         musicaFundo.loop = true
         musicaFundo.play()
+        musicaFundo.volume = 0.3
 
         let tiledMap = Resources.Mapa
 
@@ -37,130 +75,51 @@ export class expoScene extends Scene {
 
         this.add(jogador)
 
-        const duracaoFrameAnimation = 70
-
         let npcSpawnPointA = tiledMap.getObjectsByName("npc_a")[0]
         let npcSpawnPointB = tiledMap.getObjectsByName("npc_b")[0]
         let npcSpawnPointC = tiledMap.getObjectsByName("npc_c")[0]
 
         let npcA = new Npc(
-            vec(npcSpawnPointA.x + offsetX, npcSpawnPointA.y + offsetY),
-            Color.Blue,
-            "NpcA"
+            vec(npcSpawnPointA.x + offsetX, npcSpawnPointA.y + offsetY), // posição
+            Color.Blue, // cor do bloco de colisão
+            "NpcA" // nome
         )
-
-        const NpcASpriteSheet = SpriteSheet.fromImageSource({
-            image: Resources.NpcASpriteSheet,
-            grid: {
-                rows: 20,
-                columns: 56,
-                spriteHeight: 64,
-                spriteWidth: 32,
-            },
-            spacing: {
-                originOffset: {
-                    y: 12
-                }
-            }
-
-        })
-
-        const downIdle_npcA = new Animation ({
-            frames: [
-                { graphic: NpcASpriteSheet.getSprite(18, 1) },
-                { graphic: NpcASpriteSheet.getSprite(19, 1) },
-                { graphic: NpcASpriteSheet.getSprite(20, 1) },
-                { graphic: NpcASpriteSheet.getSprite(21, 1) },
-                { graphic: NpcASpriteSheet.getSprite(22, 1) },
-                { graphic: NpcASpriteSheet.getSprite(23, 1) },
-            ],
-            frameDuration: duracaoFrameAnimation
-        })
         
-        npcA.graphics.add(downIdle_npcA)
-
         let npcB = new Npc(
-            vec(npcSpawnPointB.x + offsetX, npcSpawnPointB.y + offsetY),
-            Color.Blue,
-            "NpcB"
+            vec(npcSpawnPointB.x + offsetX, npcSpawnPointB.y + offsetY), // posição
+            Color.Blue, // cor do bloco de colisão
+            "NpcB" // nome
         )
-
-        const NpcBSpriteSheet = SpriteSheet.fromImageSource({
-            image: Resources.NpcBSpriteSheet,
-            grid: {
-                rows: 20,
-                columns: 56,
-                spriteHeight: 64,
-                spriteWidth: 32,
-            },
-            spacing: {
-                originOffset: {
-                    y: 12
-                }
-            }
-
-        })
-
-        const downIdle_npcB = new Animation ({
-            frames: [
-                { graphic: NpcBSpriteSheet.getSprite(18, 1) },
-                { graphic: NpcBSpriteSheet.getSprite(19, 1) },
-                { graphic: NpcBSpriteSheet.getSprite(20, 1) },
-                { graphic: NpcBSpriteSheet.getSprite(21, 1) },
-                { graphic: NpcBSpriteSheet.getSprite(22, 1) },
-                { graphic: NpcBSpriteSheet.getSprite(23, 1) },
-            ],
-            frameDuration: duracaoFrameAnimation
-        })
-        
-        npcB.graphics.add(downIdle_npcB)
 
         let npcC = new Npc(
-            vec(npcSpawnPointC.x + offsetX, npcSpawnPointC.y + offsetY),
-            Color.Blue,
-            "NpcC"
+            vec(npcSpawnPointC.x + offsetX, npcSpawnPointC.y + offsetY), // posição
+            Color.Blue, // cor do bloco de colisão
+            "NpcC" // nome
         )
 
-        const NpcCSpriteSheet = SpriteSheet.fromImageSource({
-            image: Resources.NpcCSpriteSheet,
-            grid: {
-                rows: 20,
-                columns: 56,
-                spriteHeight: 64,
-                spriteWidth: 32,
-            },
-            spacing: {
-                originOffset: {
-                    y: 12
-                }
-            }
+        npcA.z = 1
+        npcB.z = 1
+        npcC.z = 1
 
-        })
+        const NpcASpriteSheet = recConfigs(Resources.NpcASpriteSheet)
+        const NpcBSpriteSheet = recConfigs(Resources.NpcBSpriteSheet)
+        const NpcCSpriteSheet = recConfigs(Resources.NpcCSpriteSheet)
 
-        const downIdle_npcC = new Animation ({
-            frames: [
-                { graphic: NpcCSpriteSheet.getSprite(18, 1) },
-                { graphic: NpcCSpriteSheet.getSprite(19, 1) },
-                { graphic: NpcCSpriteSheet.getSprite(20, 1) },
-                { graphic: NpcCSpriteSheet.getSprite(21, 1) },
-                { graphic: NpcCSpriteSheet.getSprite(22, 1) },
-                { graphic: NpcCSpriteSheet.getSprite(23, 1) },
-            ],
-            frameDuration: duracaoFrameAnimation
-        })
+        npcA.graphics.add(recAnimation(NpcASpriteSheet))
+        npcB.graphics.add(recAnimation(NpcBSpriteSheet))
+        npcC.graphics.add(recAnimation(NpcCSpriteSheet))
         
-        npcC.graphics.add(downIdle_npcC)
-
         this.add(npcA)
         this.add(npcB)
         this.add(npcC)
+
 
         this.camera.strategy.lockToActor(jogador)
 
         let camadaObjetosColisores = tiledMap.getObjectLayers("objetoColisores")[0]
 
         camadaObjetosColisores.objects.forEach(objeto => {
-            const objetoAtual = new Actor ({
+            const objetoAtual = new Actor({
                 name: objeto.name,
                 x: objeto.x + offsetX + (objeto.tiledObject.width! / 2),
                 y: objeto.y + offsetY + (objeto.tiledObject.height! / 2),
