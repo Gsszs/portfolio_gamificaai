@@ -3,25 +3,6 @@ import { Resources } from "../resources";
 import { Player } from "../actors/player";
 import { Npc } from "../actors/npc";
 
-
-function recAnimation(NpcSpriteSend: SpriteSheet) {
-
-    let downIdle = new Animation({
-        frames: [
-            { graphic: NpcSpriteSend.getSprite(18, 1) },
-            { graphic: NpcSpriteSend.getSprite(19, 1) },
-            { graphic: NpcSpriteSend.getSprite(20, 1) },
-            { graphic: NpcSpriteSend.getSprite(21, 1) },
-            { graphic: NpcSpriteSend.getSprite(22, 1) },
-            { graphic: NpcSpriteSend.getSprite(23, 1) },
-        ],
-        frameDuration: 70
-    })
-
-    return downIdle
-}
-
-
 function recConfigs (NpcSpriteSheet: ImageSource) {
     return SpriteSheet.fromImageSource({
         image: NpcSpriteSheet,
@@ -82,32 +63,32 @@ export class expoScene extends Scene {
         let npcA = new Npc(
             vec(npcSpawnPointA.x + offsetX, npcSpawnPointA.y + offsetY), // posição
             Color.Blue, // cor do bloco de colisão
-            "NpcA" // nome
+            "npc_a" // nome
         )
         
         let npcB = new Npc(
             vec(npcSpawnPointB.x + offsetX, npcSpawnPointB.y + offsetY), // posição
             Color.Blue, // cor do bloco de colisão
-            "NpcB" // nome
+            "npc_b" // nome
         )
 
         let npcC = new Npc(
             vec(npcSpawnPointC.x + offsetX, npcSpawnPointC.y + offsetY), // posição
             Color.Blue, // cor do bloco de colisão
-            "NpcC" // nome
+            "npc_c" // nome
         )
 
         npcA.z = 1
         npcB.z = 1
         npcC.z = 1
 
-        const NpcASpriteSheet = recConfigs(Resources.NpcASpriteSheet)
-        const NpcBSpriteSheet = recConfigs(Resources.NpcBSpriteSheet)
-        const NpcCSpriteSheet = recConfigs(Resources.NpcCSpriteSheet)
+        // const NpcASpriteSheet = recConfigs(Resources.NpcASpriteSheet)
+        // const NpcBSpriteSheet = recConfigs(Resources.NpcBSpriteSheet)
+        // const NpcCSpriteSheet = recConfigs(Resources.NpcCSpriteSheet)
 
-        npcA.graphics.add(recAnimation(NpcASpriteSheet))
-        npcB.graphics.add(recAnimation(NpcBSpriteSheet))
-        npcC.graphics.add(recAnimation(NpcCSpriteSheet))
+        // npcA.graphics.add(recAnimation(NpcASpriteSheet))
+        // npcB.graphics.add(recAnimation(NpcBSpriteSheet))
+        // npcC.graphics.add(recAnimation(NpcCSpriteSheet))
         
         this.add(npcA)
         this.add(npcB)
